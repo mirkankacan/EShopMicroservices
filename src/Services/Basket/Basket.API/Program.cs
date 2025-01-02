@@ -20,17 +20,23 @@ builder.Services.AddMarten(options =>
     options.Connection(builder.Configuration.GetConnectionString("PostgreSQLConnection")!);
 }).UseLightweightSessions();
 
-if (builder.Environment.IsDevelopment())
-{
-}
-
 builder.Services.AddValidatorsFromAssembly(assembly);
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
 
-builder.Services.AddHealthChecks().AddNpgSql(builder.Configuration.GetConnectionString("PostgreSQLConnection")!);
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("RedisConnection");
+});
+
+builder.Services.AddHealthChecks().AddNpgSql(builder.Configuration.GetConnectionString("PostgreSQLConnection")!).AddRedis(builder.Configuration.GetConnectionString("RedisConnection")!);
+
+if (builder.Environment.IsDevelopment())
+{
+}
 
 var app = builder.Build();
 
