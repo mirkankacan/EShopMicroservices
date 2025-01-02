@@ -1,1 +1,1 @@
-Repository Pattern - CQRS Pattern - Mediator Pattern
+Vertical Slice Architecture - Repository Pattern - CQRS Pattern - Mediator Pattern

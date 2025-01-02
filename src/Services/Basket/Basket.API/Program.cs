@@ -28,6 +28,8 @@ builder.Services.AddValidatorsFromAssembly(assembly);
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+
 builder.Services.AddHealthChecks().AddNpgSql(builder.Configuration.GetConnectionString("PostgreSQLConnection")!);
 
 var app = builder.Build();
