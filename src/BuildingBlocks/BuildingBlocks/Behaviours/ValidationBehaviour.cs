@@ -2,7 +2,7 @@
 using FluentValidation;
 using MediatR;
 
-namespace BuildingBlocks.Behaivors
+namespace BuildingBlocks.Behaviours
 {
     // Validation behivor for the CRUD operations
     // We add IEnumerable<IValidator<TRequest>> to collect MediatR handle methods

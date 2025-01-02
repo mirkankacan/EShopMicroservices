@@ -2,23 +2,29 @@ var builder = WebApplication.CreateBuilder(args);
 var assembly = typeof(Program).Assembly;
 
 // Add services to the container.
+
+builder.Services.AddMediatR(config =>
+{
+    config.RegisterServicesFromAssembly(assembly);
+    config.AddOpenBehavior(typeof(ValidationBehaviour<,>));
+    config.AddOpenBehavior(typeof(LoggingBehaviour<,>));
+});
 builder.Services.AddCarter(null, config =>
 {
     var moduleTypes = assembly.GetTypes()
       .Where(t => typeof(ICarterModule).IsAssignableFrom(t) && !t.IsAbstract);
     config.WithModules(moduleTypes.ToArray());
 });
-
-builder.Services.AddMediatR(config =>
-{
-    config.RegisterServicesFromAssembly(assembly);
-    config.AddOpenBehavior(typeof(ValidationBehaviour<,>));
-});
-
 builder.Services.AddMarten(options =>
 {
     options.Connection(builder.Configuration.GetConnectionString("PostgreSQLConnection")!);
 }).UseLightweightSessions();
+
+if (builder.Environment.IsDevelopment())
+{
+    // Seed the database with initial data
+    builder.Services.InitializeMartenWith<CatalogInitialData>();
+}
 
 builder.Services.AddValidatorsFromAssembly(assembly);
 
