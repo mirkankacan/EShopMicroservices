@@ -22,8 +22,6 @@ builder.Services.AddMarten(options =>
 
 if (builder.Environment.IsDevelopment())
 {
-    // Seed the database with initial data
-    builder.Services.InitializeMartenWith<CatalogInitialData>();
 }
 
 builder.Services.AddValidatorsFromAssembly(assembly);

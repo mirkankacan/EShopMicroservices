@@ -1,1 +1,1 @@
-﻿Vertical Slice Architecture
+﻿Vertical Slice Architecture - CQRS Pattern
