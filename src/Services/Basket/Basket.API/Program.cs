@@ -15,22 +15,32 @@ builder.Services.AddCarter(null, config =>
       .Where(t => typeof(ICarterModule).IsAssignableFrom(t) && !t.IsAbstract);
     config.WithModules(moduleTypes.ToArray());
 });
+
 builder.Services.AddMarten(options =>
 {
     options.Connection(builder.Configuration.GetConnectionString("PostgreSQLConnection")!);
 }).UseLightweightSessions();
-
-builder.Services.AddValidatorsFromAssembly(assembly);
-
-builder.Services.AddExceptionHandler<CustomExceptionHandler>();
-
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
-
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration.GetConnectionString("RedisConnection");
 });
+
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(o =>
+{
+    o.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+}).ConfigurePrimaryHttpMessageHandler(() =>
+{
+    return new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+    };
+});
+
+builder.Services.AddValidatorsFromAssembly(assembly);
+
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 builder.Services.AddHealthChecks().AddNpgSql(builder.Configuration.GetConnectionString("PostgreSQLConnection")!).AddRedis(builder.Configuration.GetConnectionString("RedisConnection")!);
 

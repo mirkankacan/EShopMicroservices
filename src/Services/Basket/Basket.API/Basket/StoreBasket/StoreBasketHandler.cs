@@ -12,13 +12,22 @@
         }
     }
 
-    internal class StoreBasketCommandHandler(IBasketRepository repository) : ICommandHandler<StoreBasketCommand, StoreBasketResult>
+    internal class StoreBasketCommandHandler(IBasketRepository repository, DiscountProtoService.DiscountProtoServiceClient discountProto) : ICommandHandler<StoreBasketCommand, StoreBasketResult>
     {
         public async Task<StoreBasketResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)
         {
-            ShoppingCart cart = command.ShoppingCart;
+            await DeductDiscount(command.ShoppingCart, cancellationToken);
             await repository.StoreBasketAsync(command.ShoppingCart, cancellationToken);
             return new StoreBasketResult(command.ShoppingCart.UserName);
+        }
+
+        private async Task DeductDiscount(ShoppingCart shoppingCart, CancellationToken cancellationToken)
+        {
+            foreach (var item in shoppingCart.Items)
+            {
+                var coupon = await discountProto.GetDiscountAsync(new GetDiscountRequest { ProductName = item.ProductName }, cancellationToken: cancellationToken);
+                item.Price -= coupon.Amount;
+            }
         }
     }
 }

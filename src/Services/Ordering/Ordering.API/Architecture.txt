@@ -1,0 +1,1 @@
+﻿DDD - Clean Architecture - CQRS Pattern
