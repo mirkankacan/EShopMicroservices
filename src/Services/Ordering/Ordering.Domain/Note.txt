@@ -1,0 +1,2 @@
+Domain events should be synchronously integration events should be asynchronously
+Domain events are sent using in-memory message bus using the MediatR and integration events are sent with a message broker like RabbitMQ over a queue
