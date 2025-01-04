@@ -9,8 +9,8 @@ namespace Ordering.Infrastructure
         {
             var connectionString = configuration.GetConnectionString("MssqlConnection");
 
-            //services.AddDbContext<OrderContext>(options =>
-            //    options.UseSqlServer(connectionString));
+            services.AddDbContext<OrderingDbContext>(options =>
+                options.UseSqlServer(connectionString));
             return services;
         }
     }
