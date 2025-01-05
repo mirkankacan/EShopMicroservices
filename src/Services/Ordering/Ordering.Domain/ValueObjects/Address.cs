@@ -18,7 +18,7 @@
             Country = country;
             City = city;
         }
-        private static Address Of(string firstName, string lastName, string emailAddress, string addressLine, string country, string city)
+        public static Address Of(string firstName, string lastName, string emailAddress, string addressLine, string country, string city)
         {
             ArgumentException.ThrowIfNullOrWhiteSpace(emailAddress);
             ArgumentException.ThrowIfNullOrWhiteSpace(addressLine);

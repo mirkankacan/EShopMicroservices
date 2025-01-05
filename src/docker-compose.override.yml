@@ -24,13 +24,21 @@ services:
     volumes:
       - postgres_basket:/var/lib/postgresql/data/
 
-
   basketrediscache:
     container_name: basketrediscache
     image: redis
     restart: always
     ports:
       - "6379:6379"
+
+  orderdb:
+     container_name: orderdb
+     environment:
+       - ACCEPT_EULA=Y
+       - SA_PASSWORD=123456aA*
+     restart: always
+     ports:
+        - "1433:1433"
 
   catalog.api:
     environment:

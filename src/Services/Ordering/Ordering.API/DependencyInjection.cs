@@ -13,6 +13,7 @@ namespace Ordering.API
         public static WebApplication UseApiServices(this WebApplication app)
         {
             app.MapCarter();
+
             return app;
         }
     }
