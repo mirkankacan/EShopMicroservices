@@ -11,6 +11,7 @@ namespace Ordering.Application
             {
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
             });
+
             return services;
         }
     }

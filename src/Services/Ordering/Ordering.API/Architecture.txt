@@ -1,1 +1,1 @@
-﻿DDD - Clean Architecture - CQRS Pattern
+﻿DDD - Clean Architecture - CQRS Pattern - Event Sourcing Pattern
