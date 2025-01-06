@@ -5,7 +5,7 @@
         public string CardNumber { get; } = default!;
         public string? CardHolderName { get; } = default!;
         public string Expiration { get; } = default!;
-        public string CVV { get; } = default!;
+        public string Cvv { get; } = default!;
         public int PaymentMethod { get; } = default!;
 
         protected Payment() { }
@@ -15,7 +15,7 @@
             CardNumber = cardNumber;
             CardHolderName = cardHolderName;
             Expiration = expiration;
-            CVV = cvv;
+            Cvv = cvv;
             PaymentMethod = paymentMethod;
         }
         public static Payment Of(string cardNumber, string cardHolderName, string expiration, string cvv, int paymentMethod)

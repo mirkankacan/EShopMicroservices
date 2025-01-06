@@ -82,7 +82,7 @@ namespace Ordering.Infrastructure.Data.Configurations
                    .HasMaxLength(7)
                    .IsRequired();
 
-                   paymentBuilder.Property(p => p.CVV)
+                   paymentBuilder.Property(p => p.Cvv)
                    .HasMaxLength(3)
                    .IsRequired();
 
