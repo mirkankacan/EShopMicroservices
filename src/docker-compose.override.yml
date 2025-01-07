@@ -32,13 +32,24 @@ services:
       - "6379:6379"
 
   orderdb:
-     container_name: orderdb
-     environment:
-       - ACCEPT_EULA=Y
-       - SA_PASSWORD=123456aA*
-     restart: always
-     ports:
-        - "1433:1433"
+    container_name: orderdb
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=123456aA*
+    restart: always
+    ports:
+      - "1433:1433"
+
+  messagebroker:
+    container_name: messagebroker
+    hostname: ecommerce-mq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
 
   catalog.api:
     environment:
@@ -63,9 +74,14 @@ services:
       - ConnectionStrings__PostgreSQLConnection=Server=basketdb;Port=5432;Database=BasketDb;User Id=postgres;Password=postgres;Include Error Detail=true
       - ConnectionStrings__RedisConnection=basketrediscache:6379
       - GrpcSettings__DiscountUrl=https://discount.grpc:8081
+      - MessageBroker__Host=amqp://ecommerce-mq:5672
+      - MessageBroker__UserName=guest
+      - MessageBroker__Password=guest
     depends_on:
       - basketdb
       - basketrediscache
+      - discount.grpc
+      - messagebroker 
     ports:
       - "6001:8080"
       - "6061:8081"
@@ -82,6 +98,26 @@ services:
     ports:
       - "6002:8080"
       - "6062:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+  ordering.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__MssqlConnection=Server=orderdb;Database=OrderDb;User Id=sa;Password=123456aA*;Encrypt=false;TrustServerCertificate=true
+      - MessageBroker__Host=amqp://ecommerce-mq:5672
+      - MessageBroker__UserName=guest
+      - MessageBroker__Password=guest
+      - FeatureManagment__OrderFullfilment=false
+    depends_on:
+      - orderdb
+      - messagebroker 
+    ports:
+      - "6003:8080"
+      - "6063:8081"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro

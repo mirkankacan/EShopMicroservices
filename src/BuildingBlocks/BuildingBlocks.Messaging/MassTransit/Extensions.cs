@@ -14,9 +14,10 @@ namespace BuildingBlocks.Messaging.MassTransit
                 config.SetKebabCaseEndpointNameFormatter(); // -:-D-
                 if (assembly != null)
                 {
-                    // Scan and auto-register consumers and sagas
+                    // If assembly sent, auto-register consumers
                     config.AddConsumers(assembly);
-                    config.AddSagaStateMachines(assembly);
+
+                    //config.AddSagaStateMachines(assembly);
                 }
                 config.UsingRabbitMq((context, configurator) =>
                 {

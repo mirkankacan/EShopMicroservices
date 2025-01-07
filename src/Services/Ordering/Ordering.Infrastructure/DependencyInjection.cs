@@ -9,7 +9,6 @@ namespace Ordering.Infrastructure
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("MssqlConnection");
 
             services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
             services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventInterceptor>();
@@ -17,7 +16,7 @@ namespace Ordering.Infrastructure
             services.AddDbContext<OrderingDbContext>((sp, options) =>
             {
                 options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-                options.UseSqlServer(connectionString);
+                options.UseSqlServer(configuration.GetConnectionString("MssqlConnection")!);
             });
             services.AddScoped<IOrderingDbContext, OrderingDbContext>();
 
