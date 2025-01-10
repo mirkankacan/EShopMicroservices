@@ -12,7 +12,28 @@ builder.Services.AddRefitClient<ICatalogService>().ConfigureHttpClient(c =>
 {
     ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
 })
-.AddHttpMessageHandler(() => new RefitLoggingHandler()); ;
+.AddHttpMessageHandler(() => new RefitLoggingHandler());
+
+builder.Services.AddRefitClient<IBasketService>()
+    .ConfigureHttpClient(c =>
+    {
+        c.BaseAddress = new Uri(builder.Configuration["ApiSettings:GatewayAddress"]!);
+    }).ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+    })
+.AddHttpMessageHandler(() => new RefitLoggingHandler());
+
+builder.Services.AddRefitClient<IOrderingService>()
+    .ConfigureHttpClient(c =>
+    {
+        c.BaseAddress = new Uri(builder.Configuration["ApiSettings:GatewayAddress"]!);
+    }).ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+    })
+.AddHttpMessageHandler(() => new RefitLoggingHandler());
+
 
 var app = builder.Build();
 
