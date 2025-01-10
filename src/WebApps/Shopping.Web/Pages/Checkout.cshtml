@@ -95,8 +95,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="Order.AddressLine" for="address">Address</label>
-                    <input asp-for="Order.AddressLine" type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                    <label asp-for="Order.AddressLine1" for="address">Address</label>
+                    <input asp-for="Order.AddressLine1" type="text" class="form-control" id="address" placeholder="1234 Main St" required>
                     <div class="invalid-feedback">
                         Please enter your shipping address.
                     </div>
@@ -119,8 +119,8 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label asp-for="Order.State" for="state">State</label>
-                        <select asp-for="Order.State" class="custom-select d-block w-100" id="state" required>
+                        <label asp-for="Order.City" for="state">State</label>
+                        <select asp-for="Order.City" class="custom-select d-block w-100" id="state" required>
                             <option value="">Choose...</option>
                             <option>California</option>
                         </select>
@@ -128,13 +128,7 @@
                             Please provide a valid state.
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <label asp-for="Order.ZipCode" for="zip">Zip</label>
-                        <input asp-for="Order.ZipCode" type="text" class="form-control" id="zip" placeholder="" required>
-                        <div class="invalid-feedback">
-                            Zip code required.
-                        </div>
-                    </div>
+                  
                 </div>
                 <hr class="mb-4">
                 <div class="custom-control custom-checkbox">
@@ -165,8 +159,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label asp-for="Order.CardName" for="cc-name">Name on card</label>
-                        <input asp-for="Order.CardName" type="text" class="form-control" id="cc-name" placeholder="" required>
+                        <label asp-for="Order.CardHolderName" for="cc-name">Name on card</label>
+                        <input asp-for="Order.CardHolderName" type="text" class="form-control" id="cc-name" placeholder="" required>
                         <small class="text-muted">Full name as displayed on card</small>
                         <div class="invalid-feedback">
                             Name on card is required
@@ -189,8 +183,8 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label asp-for="Order.CVV" for="cc-expiration">CVV</label>
-                        <input asp-for="Order.CVV" type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                        <label asp-for="Order.Cvv" for="cc-expiration">CVV</label>
+                        <input asp-for="Order.Cvv" type="text" class="form-control" id="cc-cvv" placeholder="" required>
                         <div class="invalid-feedback">
                             Security code required
                         </div>
