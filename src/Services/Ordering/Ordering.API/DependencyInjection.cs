@@ -15,7 +15,7 @@ namespace Ordering.API
                 config.WithModules(moduleTypes.ToArray());
             });
             services.AddExceptionHandler<CustomExceptionHandler>();
-            services.AddHealthChecks().AddSqlServer(configuration.GetConnectionString("MssqlConnection")!);
+            services.AddHealthChecks().AddSqlServer(configuration.GetConnectionString("MssqlDbConnection")!);
 
             return services;
         }

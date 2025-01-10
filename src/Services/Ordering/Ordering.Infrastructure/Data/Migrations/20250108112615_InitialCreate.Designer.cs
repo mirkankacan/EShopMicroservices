@@ -13,8 +13,8 @@ using Ordering.Infrastructure.Data;
 namespace Ordering.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(OrderingDbContext))]
-    [Migration("20250107103500_UpdateHolderName")]
-    partial class UpdateHolderName
+    [Migration("20250108112615_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

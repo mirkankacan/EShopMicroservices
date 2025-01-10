@@ -16,7 +16,7 @@ namespace Ordering.Infrastructure
             services.AddDbContext<OrderingDbContext>((sp, options) =>
             {
                 options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-                options.UseSqlServer(configuration.GetConnectionString("MssqlConnection")!);
+                options.UseSqlServer(configuration.GetConnectionString("MssqlDbConnection")!);
             });
             services.AddScoped<IOrderingDbContext, OrderingDbContext>();
 

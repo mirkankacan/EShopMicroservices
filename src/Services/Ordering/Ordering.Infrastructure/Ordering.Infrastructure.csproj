@@ -16,4 +16,8 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.11.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Data\Migrations\" />
+	</ItemGroup>
 </Project>

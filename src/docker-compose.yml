@@ -1,4 +1,4 @@
-
+version: '3.8'
 
 services:
   catalogdb:
@@ -11,7 +11,7 @@ services:
     image: redis
 
   orderdb:
-    image: mcr.microsoft.com/mssql/server
+    image: mcr.microsoft.com/mssql/server:2022-latest
 
   messagebroker:
     image: rabbitmq:management
@@ -34,6 +34,7 @@ services:
       context: .
       dockerfile: Services/Discount/Discount.Grpc/Dockerfile
 
+
   ordering.api:
     image: ${DOCKER_REGISTRY-}orderingapi
     build:
@@ -43,5 +44,3 @@ services:
 volumes:
   postgres_catalog:
   postgres_basket:
-
-
