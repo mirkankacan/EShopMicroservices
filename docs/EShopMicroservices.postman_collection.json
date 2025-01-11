@@ -1,0 +1,879 @@
+{
+	"info": {
+		"_postman_id": "94058b8a-4819-45db-9542-ee78cbd82675",
+		"name": "EShopMicroservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22848733"
+	},
+	"item": [
+		{
+			"name": "Catalog",
+			"item": [
+				{
+					"name": "GET Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/products?pageNumber=1&pageSize=2",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"test\",\r\n    \"Category\": [\"test\",\"test2\"],\r\n    \"Description\": \"test\",\r\n    \"ImageFile\": \"test\",\r\n    \"Price\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{catalog_url}}/products",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ProductByCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/products/category/c1",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products",
+								"category",
+								"c1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\":\"0207939b-3e02-4495-b2ab-6a5cd00fe47c\",\r\n    \"Name\":\"test\",\r\n    \"Category\":[\"c1\"],\r\n    \"Description\":\"test\",\r\n    \"ImageFile\":\"test\",\r\n    \"Price\":155\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{catalog_url}}/products",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/products/0207939b-3e02-4495-b2ab-6a5cd00fe47c",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products",
+								"0207939b-3e02-4495-b2ab-6a5cd00fe47c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/health",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ProductById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/products/0207939b-3e02-4495-b2ab-6a5cd00fe47c",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"products",
+								"0207939b-3e02-4495-b2ab-6a5cd00fe47c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Basket",
+			"item": [
+				{
+					"name": "GET BasketByUsername",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basket_url}}/basket/swn",
+							"host": [
+								"{{basket_url}}"
+							],
+							"path": [
+								"basket",
+								"swn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST StoreBasket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ShoppingCart\":{\r\n        \"UserName\":\"swn\",\r\n        \"Items\":[\r\n            {\r\n                \"Quantity\":2,\r\n                \"Color\":\"Red\",\r\n                \"Price\":1000,\r\n                \"ProductId\":\"5334c996-8457-4cf0-815c-ed2b77c4ff61\",\r\n                \"ProductName\":\"IPhone X\"\r\n            },\r\n             {\r\n                \"Quantity\":3,\r\n                \"Color\":\"White\",\r\n                \"Price\":5000,\r\n                \"ProductId\":\"c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914\",\r\n                \"ProductName\":\"Samsung 10\"\r\n            }\r\n        ]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basket_url}}/basket",
+							"host": [
+								"{{basket_url}}"
+							],
+							"path": [
+								"basket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE BasketByUsername",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{basket_url}}/basket/swn",
+							"host": [
+								"{{basket_url}}"
+							],
+							"path": [
+								"basket",
+								"swn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basket_url}}/health",
+							"host": [
+								"{{basket_url}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST BasketCheckout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"BasketCheckoutDto\":{\r\n            \"UserName\":\"swn\",\r\n            \"CustomerId\":\"189dc8dc-990f-48e0-a37b-e6f2b60b9d7d\",\r\n            \"TotalPrice\":0,\r\n            \"FirstName\":\"Mirkan\",\r\n            \"LastName\":\"Kacan\",\r\n            \"EmailAddress\":\"kacanmirkan@gmail.com\",\r\n            \"AddressLine\":\"Izmir\",\r\n            \"Country\":\"Turkey\",\r\n            \"City\":\"Izmir\",\r\n            \"CardHolderName\":\"Mirkan Kacan\",\r\n            \"CardNumber\":\"4854-3151-1234-0000\",\r\n            \"Expiration\":\"12/28\",\r\n            \"Cvv\":\"000\",\r\n            \"PaymentMethod\":1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basket_url}}/basket/checkout",
+							"host": [
+								"{{basket_url}}"
+							],
+							"path": [
+								"basket",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ordering",
+			"item": [
+				{
+					"name": "POST Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Order\":{\r\n        \"CustomerId\":\"58c49479-ec65-4de2-86e7-033c546291aa\",\r\n        \"OrderName\":\"ORD_4\",\r\n        \"ShippingAddress\":{\r\n            \"FirstName\":\"Test\",\r\n            \"LastName\":\"Tester\",\r\n            \"EmailAddress\":\"test@gmail.com\",\r\n            \"AddressLine\":\"Wiegand Pass Suite 825\",\r\n            \"Country\":\"USA\",\r\n            \"City\":\"Oklahoma City\"\r\n        },\r\n         \"BillingAddress\":{\r\n            \"FirstName\":\"Test\",\r\n            \"LastName\":\"Tester\",\r\n            \"EmailAddress\":\"test@gmail.com\",\r\n            \"AddressLine\":\"Wiegand Pass Suite 825\",\r\n            \"Country\":\"USA\",\r\n            \"City\":\"Oklahoma City\"\r\n        },\r\n        \"Payment\":{\r\n            \"CardHolderName\":\"Test Tester\",\r\n            \"CardNumber\":\"875-444-3739\",\r\n            \"Expiration\":\"12/28\",\r\n            \"Cvv\":\"455\",\r\n            \"PaymentMethod\":1\r\n        },\r\n        \"Status\":2,\r\n        \"OrderItems\": [\r\n            {\r\n                \"ProductId\":\"5334c996-8457-4cf0-815c-ed2b77c4ff61\",\r\n                \"Quantity\":2,\r\n                \"Price\":50000\r\n            },\r\n             {\r\n                \"ProductId\":\"c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914\",\r\n                \"Quantity\":1,\r\n                \"Price\":30000\r\n            }\r\n            \r\n        ]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ordering_url}}/orders",
+							"host": [
+								"{{ordering_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ordering_url}}/orders?PageIndex=0&PageSize=12",
+							"host": [
+								"{{ordering_url}}"
+							],
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "PageIndex",
+									"value": "0"
+								},
+								{
+									"key": "PageSize",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET OrdersByCustomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ordering_url}}/orders/customer/58c49479-ec65-4de2-86e7-033c546291aa",
+							"host": [
+								"{{ordering_url}}"
+							],
+							"path": [
+								"orders",
+								"customer",
+								"58c49479-ec65-4de2-86e7-033c546291aa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET OrdersByOrderName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ordering_url}}/orders/ORD_5",
+							"host": [
+								"{{ordering_url}}"
+							],
+							"path": [
+								"orders",
+								"ORD_5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{ordering_url}}/orders/160125a0-125d-4e6b-a9f2-9a856daf5009",
+							"host": [
+								"{{ordering_url}}"
+							],
+							"path": [
+								"orders",
+								"160125a0-125d-4e6b-a9f2-9a856daf5009"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Order\":{\r\n        \"Id\":\"aad4427b-dfeb-42de-9827-bc66537f1f31\",\r\n        \"CustomerId\":\"58c49479-ec65-4de2-86e7-033c546291aa\",\r\n        \"OrderName\":\"ORD_5\",\r\n        \"ShippingAddress\":{\r\n            \"FirstName\":\"Updated Test\",\r\n            \"LastName\":\"Tester\",\r\n            \"EmailAddress\":\"test@gmail.com\",\r\n            \"AddressLine\":\"Wiegand Pass Suite 825\",\r\n            \"Country\":\"USA\",\r\n            \"City\":\"Oklahoma City\"\r\n        },\r\n         \"BillingAddress\":{\r\n            \"FirstName\":\"Test\",\r\n            \"LastName\":\"Tester\",\r\n            \"EmailAddress\":\"test@gmail.com\",\r\n            \"AddressLine\":\"Wiegand Pass Suite 825\",\r\n            \"Country\":\"USA\",\r\n            \"City\":\"Oklahoma City\"\r\n        },\r\n        \"Payment\":{\r\n            \"CardHolderName\":\"Test Tester\",\r\n            \"CardNumber\":\"875-444-3739\",\r\n            \"Expiration\":\"12/28\",\r\n            \"Cvv\":\"455\",\r\n            \"PaymentMethod\":1\r\n        },\r\n        \"Status\":2,\r\n        \"OrderItems\": [\r\n            {\r\n                \"ProductId\":\"5334c996-8457-4cf0-815c-ed2b77c4ff61\",\r\n                \"Quantity\":2,\r\n                \"Price\":50000\r\n            },\r\n             {\r\n                \"ProductId\":\"c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914\",\r\n                \"Quantity\":1,\r\n                \"Price\":30000\r\n            }\r\n            \r\n        ]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ordering_url}}/orders",
+							"host": [
+								"{{ordering_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ordering_url}}/health",
+							"host": [
+								"{{ordering_url}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "YARP API Gateway",
+			"item": [
+				{
+					"name": "Catalog",
+					"item": [
+						{
+							"name": "GET Product",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/products?pageNumber=1&pageSize=2",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"products"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST Product",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\": \"test\",\r\n    \"Category\": [\"test\",\"test2\"],\r\n    \"Description\": \"test\",\r\n    \"ImageFile\": \"test\",\r\n    \"Price\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/products",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET ProductByCategory",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/products/category/c1",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"products",
+										"category",
+										"c1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT Product",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Id\":\"0207939b-3e02-4495-b2ab-6a5cd00fe47c\",\r\n    \"Name\":\"test\",\r\n    \"Category\":[\"c1\"],\r\n    \"Description\":\"test\",\r\n    \"ImageFile\":\"test\",\r\n    \"Price\":155\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/products",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE Product",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/products/0207939b-3e02-4495-b2ab-6a5cd00fe47c",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"products",
+										"0207939b-3e02-4495-b2ab-6a5cd00fe47c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Health",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/catalog-service/health",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"catalog-service",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET ProductById",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/products/0207939b-3e02-4495-b2ab-6a5cd00fe47c",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"products",
+										"0207939b-3e02-4495-b2ab-6a5cd00fe47c"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Basket",
+					"item": [
+						{
+							"name": "GET BasketByUsername",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/basket-service/basket/swn",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"basket-service",
+										"basket",
+										"swn"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST StoreBasket",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ShoppingCart\":{\r\n        \"UserName\":\"swn\",\r\n        \"Items\":[\r\n            {\r\n                \"Quantity\":2,\r\n                \"Color\":\"Red\",\r\n                \"Price\":1000,\r\n                \"ProductId\":\"5334c996-8457-4cf0-815c-ed2b77c4ff61\",\r\n                \"ProductName\":\"IPhone X\"\r\n            },\r\n             {\r\n                \"Quantity\":3,\r\n                \"Color\":\"White\",\r\n                \"Price\":5000,\r\n                \"ProductId\":\"c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914\",\r\n                \"ProductName\":\"Samsung 10\"\r\n            }\r\n        ]\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{yarp_url}}/basket-service/basket",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"basket-service",
+										"basket"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE BasketByUsername",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/basket-service/basket/swn",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"basket-service",
+										"basket",
+										"swn"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Health",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/basket-service/health",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"basket-service",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST BasketCheckout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"BasketCheckoutDto\":{\r\n            \"UserName\":\"swn\",\r\n            \"CustomerId\":\"189dc8dc-990f-48e0-a37b-e6f2b60b9d7d\",\r\n            \"TotalPrice\":0,\r\n            \"FirstName\":\"Mirkan\",\r\n            \"LastName\":\"Kacan\",\r\n            \"EmailAddress\":\"kacanmirkan@gmail.com\",\r\n            \"AddressLine\":\"Izmir\",\r\n            \"Country\":\"Turkey\",\r\n            \"City\":\"Izmir\",\r\n            \"CardHolderName\":\"Mirkan Kacan\",\r\n            \"CardNumber\":\"4854-3151-1234-0000\",\r\n            \"Expiration\":\"12/28\",\r\n            \"Cvv\":\"000\",\r\n            \"PaymentMethod\":1\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{yarp_url}}/basket-service/basket/checkout",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"basket-service",
+										"basket",
+										"checkout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Ordering",
+					"item": [
+						{
+							"name": "POST Order",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Order\":{\r\n        \"CustomerId\":\"58c49479-ec65-4de2-86e7-033c546291aa\",\r\n        \"OrderName\":\"ORD_4\",\r\n        \"ShippingAddress\":{\r\n            \"FirstName\":\"Test\",\r\n            \"LastName\":\"Tester\",\r\n            \"EmailAddress\":\"test@gmail.com\",\r\n            \"AddressLine\":\"Wiegand Pass Suite 825\",\r\n            \"Country\":\"USA\",\r\n            \"City\":\"Oklahoma City\"\r\n        },\r\n         \"BillingAddress\":{\r\n            \"FirstName\":\"Test\",\r\n            \"LastName\":\"Tester\",\r\n            \"EmailAddress\":\"test@gmail.com\",\r\n            \"AddressLine\":\"Wiegand Pass Suite 825\",\r\n            \"Country\":\"USA\",\r\n            \"City\":\"Oklahoma City\"\r\n        },\r\n        \"Payment\":{\r\n            \"CardHolderName\":\"Test Tester\",\r\n            \"CardNumber\":\"875-444-3739\",\r\n            \"Expiration\":\"12/28\",\r\n            \"Cvv\":\"455\",\r\n            \"PaymentMethod\":1\r\n        },\r\n        \"Status\":2,\r\n        \"OrderItems\": [\r\n            {\r\n                \"ProductId\":\"5334c996-8457-4cf0-815c-ed2b77c4ff61\",\r\n                \"Quantity\":2,\r\n                \"Price\":50000\r\n            },\r\n             {\r\n                \"ProductId\":\"c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914\",\r\n                \"Quantity\":1,\r\n                \"Price\":30000\r\n            }\r\n            \r\n        ]\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{yarp_url}}/ordering-service/orders",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"ordering-service",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Orders",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/ordering-service/orders?PageIndex=0&PageSize=12",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"ordering-service",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "PageIndex",
+											"value": "0"
+										},
+										{
+											"key": "PageSize",
+											"value": "12"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET OrdersByCustomer",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/ordering-service/orders/customer/58c49479-ec65-4de2-86e7-033c546291aa",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"ordering-service",
+										"orders",
+										"customer",
+										"58c49479-ec65-4de2-86e7-033c546291aa"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET OrdersByOrderName",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/ordering-service/orders/ORD_5",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"ordering-service",
+										"orders",
+										"ORD_5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE Order",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/ordering-service/orders/160125a0-125d-4e6b-a9f2-9a856daf5009",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"ordering-service",
+										"orders",
+										"160125a0-125d-4e6b-a9f2-9a856daf5009"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT Order",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Order\":{\r\n        \"Id\":\"aad4427b-dfeb-42de-9827-bc66537f1f31\",\r\n        \"CustomerId\":\"58c49479-ec65-4de2-86e7-033c546291aa\",\r\n        \"OrderName\":\"ORD_5\",\r\n        \"ShippingAddress\":{\r\n            \"FirstName\":\"Updated Test\",\r\n            \"LastName\":\"Tester\",\r\n            \"EmailAddress\":\"test@gmail.com\",\r\n            \"AddressLine\":\"Wiegand Pass Suite 825\",\r\n            \"Country\":\"USA\",\r\n            \"City\":\"Oklahoma City\"\r\n        },\r\n         \"BillingAddress\":{\r\n            \"FirstName\":\"Test\",\r\n            \"LastName\":\"Tester\",\r\n            \"EmailAddress\":\"test@gmail.com\",\r\n            \"AddressLine\":\"Wiegand Pass Suite 825\",\r\n            \"Country\":\"USA\",\r\n            \"City\":\"Oklahoma City\"\r\n        },\r\n        \"Payment\":{\r\n            \"CardHolderName\":\"Test Tester\",\r\n            \"CardNumber\":\"875-444-3739\",\r\n            \"Expiration\":\"12/28\",\r\n            \"Cvv\":\"455\",\r\n            \"PaymentMethod\":1\r\n        },\r\n        \"Status\":2,\r\n        \"OrderItems\": [\r\n            {\r\n                \"ProductId\":\"5334c996-8457-4cf0-815c-ed2b77c4ff61\",\r\n                \"Quantity\":2,\r\n                \"Price\":50000\r\n            },\r\n             {\r\n                \"ProductId\":\"c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914\",\r\n                \"Quantity\":1,\r\n                \"Price\":30000\r\n            }\r\n            \r\n        ]\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{yarp_url}}/ordering-service/orders",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"ordering-service",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Health",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{yarp_url}}/ordering-service/health",
+									"host": [
+										"{{yarp_url}}"
+									],
+									"path": [
+										"ordering-service",
+										"health"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
